@@ -1,0 +1,13 @@
+class CreateItems < ActiveRecord::Migration
+  def change
+    create_table :items do |t|
+      t.text :description
+      t.string :sku
+      t.string :qty
+      t.decimal :price
+      t.integer :discount
+
+      t.timestamps null: false
+    end
+  end
+end
