@@ -5,6 +5,7 @@ gem 'bootstrap-sass'
 gem 'simple_form'
 gem "font-awesome-rails"
 gem "animate-rails"
+gem 'cancancan'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'

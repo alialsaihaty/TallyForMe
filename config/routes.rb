@@ -2,21 +2,9 @@ Rails.application.routes.draw do
 
 
 
-  get 'invoices/new'
+  resources :invoices
 
-  get 'invoices/edit'
-
-  get 'invoices/show'
-
-  get 'invoices/index'
-
-  get 'items/new'
-
-  get 'items/edit'
-
-  get 'items/index'
-
-  get 'items/show'
+  resources :items
 
   resources :users, only: [:new, :create] do
     collection do

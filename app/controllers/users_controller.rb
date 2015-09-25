@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def new
     @user = User.new
   end
@@ -7,25 +6,32 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
     if @user.save
+      # session[:user_id] = @user.id
       redirect_to root_path, notice: "Logged In!"
     else
       flash[:alert] = "See errors below"
       render :new
     end
   end
-  
-  # def edit
-  # end
+
+  def edit
+    @user = current_user
+  end
 
   def update
-    if @user.update user_params
-      redirect_to edit_users_path, notice: "Profile Updated!"
+    @user = current_user
+    if @user.authenticate(params[:user][:current_password])
+      if @user.update user_params
+        redirect_to edit_users_path, notice: "Profile updated"
+      else
+        flash[:alert] = "See errors below"
+        render :edit
+      end
     else
-      flash[:alert] = "See errors below"
+      flash[:alert] = "Wrong password"
       render :edit
     end
   end
-
 
   private
 
