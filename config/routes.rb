@@ -2,6 +2,20 @@ Rails.application.routes.draw do
 
 
 
+  get 'phones/new'
+
+  get 'phones/edit'
+
+  get 'phones/index'
+
+  get 'addresses/new'
+
+  get 'addresses/index'
+
+  get 'addresses/edit'
+
+  get 'addresses/show'
+
   resources :invoices
 
   resources :items

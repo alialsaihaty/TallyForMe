@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150925164304) do
+ActiveRecord::Schema.define(version: 20150926211933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "address3"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "country"
+    t.integer  "addressable_id"
+    t.string   "addressable_type"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "addresses", ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id", using: :btree
 
   create_table "homes", force: :cascade do |t|
     t.string   "index"
@@ -54,6 +70,20 @@ ActiveRecord::Schema.define(version: 20150925164304) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "phones", force: :cascade do |t|
+    t.string   "phone_number"
+    t.string   "country_code"
+    t.string   "ext"
+    t.string   "is_default"
+    t.string   "mobile"
+    t.integer  "phonable_id"
+    t.string   "phonable_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "phones", ["phonable_type", "phonable_id"], name: "index_phones_on_phonable_type_and_phonable_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
