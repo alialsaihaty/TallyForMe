@@ -2,6 +2,14 @@ Rails.application.routes.draw do
 
 
 
+  get 'companies/new'
+
+  get 'companies/edit'
+
+  get 'companies/show'
+
+  get 'companies/index'
+
   get 'phones/new'
 
   get 'phones/edit'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150926211933) do
+ActiveRecord::Schema.define(version: 20150927002819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,9 +28,17 @@ ActiveRecord::Schema.define(version: 20150926211933) do
     t.string   "addressable_type"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.string   "address_kind"
   end
 
   add_index "addresses", ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id", using: :btree
+
+  create_table "companies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "homes", force: :cascade do |t|
     t.string   "index"
@@ -47,6 +55,16 @@ ActiveRecord::Schema.define(version: 20150926211933) do
 
   add_index "invoiced_items", ["invoice_id"], name: "index_invoiced_items_on_invoice_id", using: :btree
   add_index "invoiced_items", ["item_id"], name: "index_invoiced_items_on_item_id", using: :btree
+
+  create_table "invoiced_services", force: :cascade do |t|
+    t.integer  "service_id"
+    t.integer  "invoice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "invoiced_services", ["invoice_id"], name: "index_invoiced_services_on_invoice_id", using: :btree
+  add_index "invoiced_services", ["service_id"], name: "index_invoiced_services_on_service_id", using: :btree
 
   create_table "invoices", force: :cascade do |t|
     t.string   "invoice_number"
@@ -69,7 +87,10 @@ ActiveRecord::Schema.define(version: 20150926211933) do
     t.integer  "discount"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "company_id"
   end
+
+  add_index "items", ["company_id"], name: "index_items_on_company_id", using: :btree
 
   create_table "phones", force: :cascade do |t|
     t.string   "phone_number"
@@ -81,9 +102,21 @@ ActiveRecord::Schema.define(version: 20150926211933) do
     t.string   "phonable_type"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "phone_kind"
   end
 
   add_index "phones", ["phonable_type", "phonable_id"], name: "index_phones_on_phonable_type_and_phonable_id", using: :btree
+
+  create_table "services", force: :cascade do |t|
+    t.string   "name"
+    t.string   "unit"
+    t.integer  "tax1"
+    t.integer  "tax2"
+    t.text     "description"
+    t.decimal  "cost"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
@@ -94,10 +127,17 @@ ActiveRecord::Schema.define(version: 20150926211933) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.boolean  "admin",           default: true
+    t.string   "user_kind"
+    t.integer  "company_id"
   end
 
+  add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   add_foreign_key "invoiced_items", "invoices"
   add_foreign_key "invoiced_items", "items"
+  add_foreign_key "invoiced_services", "invoices"
+  add_foreign_key "invoiced_services", "services"
+  add_foreign_key "items", "companies"
+  add_foreign_key "users", "companies"
 end
