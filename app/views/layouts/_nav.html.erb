@@ -1,10 +1,27 @@
-<% if user_signed_in? %>
- <li><%= link_to edit_users_path do %>
-           Hello <%= current_user.first_name %>
-    <% end %>
- </li>
- <li><%= link_to "Sign out", sessions_path, method: :delete %></li>
- <% else %>
-  <li><%= link_to "Sign in", new_session_path %></li>
-  <li><%= link_to "Sign up", new_user_path %></li>
-<% end %>
+<nav class="navbar navbar-inverse topnav" role="navigation">
+  <div class="container topnav">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+      </button>
+      <%= link_to image_tag("Drawing3.png"), root_path, class: "navbar-brand topnav" %>
+    </div>
+      <ul class="nav navbar-nav">
+        <li><%= link_to "Create Invoice", new_invoice_path %></li>
+        <li><%= link_to "Create Product", new_item_path %></li>
+        <li><%= link_to "Create Service", new_service_path %></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li><%= link_to edit_users_path do %>
+                Hello <%= current_user.first_name %>
+              <% end %>
+          </li>
+          <li><%= link_to "Sign out", sessions_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Sign in", new_session_path %></li>
+          <li><%= link_to "Sign up", new_user_path %></li>
+        <% end %>
+      </ul>
+  </div>
+</nav>

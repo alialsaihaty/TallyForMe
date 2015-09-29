@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150927002819) do
+ActiveRecord::Schema.define(version: 20150927201513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,7 +77,10 @@ ActiveRecord::Schema.define(version: 20150927002819) do
     t.datetime "payment_date"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "company_id"
   end
+
+  add_index "invoices", ["company_id"], name: "index_invoices_on_company_id", using: :btree
 
   create_table "items", force: :cascade do |t|
     t.text     "description"
@@ -116,7 +119,10 @@ ActiveRecord::Schema.define(version: 20150927002819) do
     t.decimal  "cost"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "company_id"
   end
+
+  add_index "services", ["company_id"], name: "index_services_on_company_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
@@ -138,6 +144,8 @@ ActiveRecord::Schema.define(version: 20150927002819) do
   add_foreign_key "invoiced_items", "items"
   add_foreign_key "invoiced_services", "invoices"
   add_foreign_key "invoiced_services", "services"
+  add_foreign_key "invoices", "companies"
   add_foreign_key "items", "companies"
+  add_foreign_key "services", "companies"
   add_foreign_key "users", "companies"
 end
