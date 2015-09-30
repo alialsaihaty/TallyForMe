@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :services
-  
+
   resources :addresses
 
   resources :phones

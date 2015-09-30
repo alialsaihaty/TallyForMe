@@ -4,13 +4,20 @@
 
 
 .navbar {
-  min-height:70px !important
+  min-height:70px !important;
+  background-color: #A6B2BE !important;
+  /*background:rgba(255,255,255,0.25) !important;*/
+  border: none;
 }
- li a {
+ ul.nav.navbar-nav > li > a {
    color: white !important;
    margin-top: 10px !important
  }
 
 .navbar-brand > img {
   padding-top: -15px !important
+}
+
+ul.dropdown-menu a {
+  color: black !important;
 }

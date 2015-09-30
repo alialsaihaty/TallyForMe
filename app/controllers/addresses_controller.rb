@@ -1,12 +1,14 @@
 class AddressesController < ApplicationController
 
-  before_action :find_addressable
 
   def new
+    @address = Address.new
+    @company = @addresable = Company.find params[:company_id]
   end
 
 
   def create
+    @company = @addresable = Company.find params[:company_id]
     @address            = Address.new address_params
     @address.addresable = @addresable
     @address.save

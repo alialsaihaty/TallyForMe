@@ -1,9 +1,12 @@
 class PhonesController < ApplicationController
   def new
     @phone = Phone.new
+    @company = @phonable = Company.find params[:company_id]
   end
+
   def create
-    @phone          = Phone.new phone_params
+    @company = @phonable = Company.find params[:company_id]
+    @phone               = Phone.new phone_params
     @phone.phonable = @phonable
     @phone.save
   end
@@ -11,5 +14,11 @@ class PhonesController < ApplicationController
   end
 
   def index
+  end
+
+  private
+
+  def phone_params
+    params.require(:phone).permit(:phone_number, :ext, :is_default, :mobile)
   end
 end

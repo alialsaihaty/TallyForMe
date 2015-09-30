@@ -1,0 +1,134 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="board">
+                <!-- <h2>Company Details<sup>™</sup></h2> -->
+                <div class="board-inner">
+                  <ul class="nav nav-tabs" id="myTab">
+                    <div class="liner"></div>
+
+                       <li class="active">
+                         <a href="#company-address" data-toggle="tab" title="Company Addresses">
+                          <span class="round-tabs one">
+                                  <i class="glyphicon glyphicon-home"></i>
+                          </span>
+                         </a>
+                       </li>
+
+                       <li class="disabled">
+                         <a href="#company-phone" data-toggle="tab" title="Company Phones">
+                           <span class="round-tabs two">
+                             <i class="glyphicon glyphicon-user"></i>
+                           </span>
+                         </a>
+                       </li>
+
+                       <li class="disabled">
+                         <a href="#company-email" data-toggle="tab" title="Company Emails">
+                           <span class="round-tabs three">
+                                <i class="glyphicon glyphicon-gift"></i>
+                           </span>
+                         </a>
+                       </li>
+
+                       <li class="disabled">
+                         <a href="#confirmation" data-toggle="tab" title="Confirmation">
+                           <span class="round-tabs four">
+                                <i class="glyphicon glyphicon-comment"></i>
+                           </span>
+                         </a>
+                       </li>
+
+                       <li class="disabled"><a href="#doner" data-toggle="tab" title="Completed">
+                           <span class="round-tabs five">
+                                <i class="glyphicon glyphicon-ok"></i>
+                           </span>
+                          </a>
+                       </li>
+
+                  </ul>
+               </div>
+
+                 <div class="tab-content">
+
+                    <div class="tab-pane fade in active" id="company-address">
+                        <h3 class="head text-center">Company Details</h3>
+                        <p class="narrow text-center">
+                            Please fill up the following information
+                        </p>
+
+                        <%= simple_form_for @company do |f| %>
+                          <%= f.input :name, label: 'Business Name:'  %>
+                          <%#= f.input :email, label: 'Business Email:' %>
+                          <%= f.simple_fields_for :addresses do |a| %>
+                            <%= a.input :address1, label: 'Business Address' %>
+                            <%= a.input :city %>
+                            <%= a.input :state %>
+                            <%= a.input :zip %>
+                            <%#= a.input :country %>
+                          <% end %>
+                        <% end %>
+                        <ul class="list-inline text-center">
+                            <li><button type="button" class="btn btn-success btn-outline-rounded green next-step">Next<span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></button></li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-pane fade" id="company-phone">
+                        <h3 class="head text-center">Welcome <%= current_user.first_name %><sup>™</sup> <span style="color:#f48260;">♥</span></h3>
+                        <p class="narrow text-center">
+                            Please fill in the following Information
+                        </p>
+
+                        <%= simple_form_for @company do |f| %>
+                          <%= simple_fields_for :phones do |d| %>
+                            <%= d.input :phone_number %>
+                            <%= d.input :ext %>
+                            <%= d.input :mobile %>
+                          <% end %>
+                        <% end %>
+                        <ul class="list-inline text-center">
+                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                            <li><button type="button" class="btn btn-success btn-outline-rounded green next-step">Continue</button></li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-pane fade" id="company-email">
+                        <h3 class="head text-center">Business Emails</h3>
+                        <p class="narrow text-center">
+                            Please
+                        </p>
+                        <ul class="list-inline text-center">
+                          <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                          <li><button type="button" class="btn btn-success btn-outline-rounded green next-step">Continue</button></li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-pane fade" id="confirmation">
+                        <h3 class="head text-center">Confirmation</h3>
+                        <p class="narrow text-center">
+                            Please make sure you entered the correct information
+                        </p>
+                        <p class="text-center">
+                          <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                          <li><button type="button" class="btn btn-success btn-outline-rounded green next-step">Continue</button></li>
+                        </p>
+                    </div>
+
+                    <div class="tab-pane fade" id="doner">
+                      <div class="text-center">
+                        <i class="img-intro icon-checkmark-circle"></i>
+                      </div>
+                      <h3 class="head text-center">You made it<span style="color:#f48260;">♥</span><%= current_user.first_name %></h3>
+                      <p class="narrow text-center">
+                      thanks for staying tuned!.
+                      </p>
+                      <ul class="list-inline text-center">
+                          <li><%#= f.submit "Submit", class: "btn btn-success btn-outline-rounded green next-step" %><span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></li>
+                      </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </section>

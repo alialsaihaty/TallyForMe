@@ -16,13 +16,9 @@
  */
 
  body{
-     background: #8999A8;
+ /*background: #8999A8;*/
  }
- .navbar {
- background:rgba(255,255,255,0.25) !important;
- border: none;
 
- }
 
  .nav li:hover:nth-child(8n+1), .nav li.active:nth-child(8n+1){
    border-bottom: #C4E17F 3px solid;
