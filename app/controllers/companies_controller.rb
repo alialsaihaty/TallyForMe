@@ -4,6 +4,7 @@ class CompaniesController < ApplicationController
     #@address = @company.addresses.new
     1.times{ @company.addresses.build }
     @phone = @company.phones.new
+    @email = @company.emails.new
   end
 
   def create
@@ -40,6 +41,6 @@ class CompaniesController < ApplicationController
   private
 
   def company_params
-    params.require(:company).permit(:name, :email, :user_id, :phone_number, addresses_attributes: [:address1, :city, :country, :zip, :id, :_destroy] )
+    params.require(:company).permit(:name, :email, :user_id, phones_attributes: [:phone_number, :ext, :is_default, :phone_kind, :mobile, :id, :_destroy], addresses_attributes: [:address1, :city, :country, :zip, :id, :_destroy], emails_attributes: [:email, :is_default, :email_kind, :id, :_destroy] )
   end
 end

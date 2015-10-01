@@ -3,12 +3,13 @@ class UsersController < ApplicationController
 
   def new
     @user    = User.new
-    @company = Company.new 
+    @company = Company.new
   end
 
   def create
     @user = User.new user_params
     if @user.save
+      CommentsMailer.notify_account_owner(@user).deliver_now
       redirect_to root_path, notice: "Logged In!"
     else
       flash[:alert] = "See errors below"

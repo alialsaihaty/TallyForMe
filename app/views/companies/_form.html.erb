@@ -58,13 +58,13 @@
                         </p>
 
                         <%= simple_form_for @company do |f| %>
-                          <%= f.input :name, label: 'Business Name:'  %>
+                          <%= f.input :name, label: 'Business Name:', input_html: { class: 'address-input' }  %>
                           <%#= f.input :email, label: 'Business Email:' %>
                           <%= f.simple_fields_for :addresses do |a| %>
-                            <%= a.input :address1, label: 'Business Address' %>
-                            <%= a.input :city %>
-                            <%= a.input :state %>
-                            <%= a.input :zip %>
+                            <%= a.input :address1, label: 'Business Address',  input_html: { class: 'address-input' } %>
+                            <%= a.input :city,  input_html: { class: 'address-input' } %>
+                            <%= a.input :state,  input_html: { class: 'address-input' } %>
+                            <%= a.input :zip,  input_html: { class: 'address-input' } %>
                             <%#= a.input :country %>
                           <% end %>
                         <% end %>
@@ -81,25 +81,32 @@
 
                         <%= simple_form_for @company do |f| %>
                           <%= simple_fields_for :phones do |d| %>
-                            <%= d.input :phone_number %>
-                            <%= d.input :ext %>
-                            <%= d.input :mobile %>
+                            <%= d.input :phone_number, input_html: { class: 'phone-input' } %>
+                            <%= d.input :ext, input_html: { class: 'phone-input' } %>
+                            <%= d.input :mobile, input_html: { class: 'phone-input' } %>
                           <% end %>
                         <% end %>
                         <ul class="list-inline text-center">
                             <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-                            <li><button type="button" class="btn btn-success btn-outline-rounded green next-step">Continue</button></li>
+                            <li><button type="button" class="btn btn-success btn-outline-rounded green next-step2">Continue</button></li>
                         </ul>
                     </div>
 
                     <div class="tab-pane fade" id="company-email">
                         <h3 class="head text-center">Business Emails</h3>
                         <p class="narrow text-center">
-                            Please
+                            Please fill in the following Information
                         </p>
+
+                        <%= simple_form_for @company do |f| %>
+                          <%= simple_fields_for :emails do |e| %>
+                            <%= e.input :email, input_html: { class: 'email-input' } %>
+                            <%# e.input :is_default, input_html: { class: 'email-input' }  %>
+                          <% end %>
+                        <% end %>
                         <ul class="list-inline text-center">
                           <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-                          <li><button type="button" class="btn btn-success btn-outline-rounded green next-step">Continue</button></li>
+                          <li><button type="button" class="btn btn-success btn-outline-rounded green next-step3">Continue</button></li>
                         </ul>
                     </div>
 
