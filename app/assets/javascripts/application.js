@@ -13,102 +13,53 @@
 //= require jquery
 //= require jquery.validate
 //= require jquery.validate.additional-methods
+//= require jquery-ui
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require turbolinks
 //= require_tree .
 
+$(document).ready(function() {
+  $('a[title]').tooltip();
 
-$(function(){
-$('a[title]').tooltip();
-// tooltip is when you hover the element with your mouse, the title attribute is displayed in a little box next to the element
+  var navListItems = $('div.setup-panel div a'),
+            allWells = $('.setup-content'),
+            allNextBtn = $('.nextBtn');
 
-  $(".next-step").on("click", function(e){
-    var $active = $('.board .nav-tabs li.active');
-    $active.next().removeClass('disabled')
-    nextTab($active);
+    allWells.hide();
 
-    var isValid = 1;
- $('.address-input').each(function(){
-     if($(this).val() == ''){
-         $(this).css('border','1px solid red');
-         isValid = 0;
-         }
-     else{
-         $(this).css('border','1px solid green');
-         $('#company-phone').show();
-         }
-     });
+    navListItems.click(function (e) {
+        e.preventDefault();
+        var $target = $($(this).attr('href')),
+                $item = $(this);
 
- if(isValid == 0){
-    //  alert('Please enter content to all text fields');
-      var $active = $(".board .nav-tabs li.active");
-      prevTab($active);
-      $('#company-phone').hide();
-     return false;
-     }
-  });
+        if (!$item.hasClass('disabled')) {
+            navListItems.removeClass('btn-primary').addClass('btn-default');
+            $item.addClass('btn-primary');
+            allWells.hide();
+            $target.show();
+            $target.find('input:eq(0)').focus();
+        }
+    });
 
+    allNextBtn.click(function(){
+        var curStep = $(this).closest(".setup-content"),
+            curStepBtn = curStep.attr("id"),
+            nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+            curInputs = curStep.find("input[type='text'],input[type='url']"),
+            isValid = true;
 
-  $(".next-step2").on("click", function(e){
-    var $active = $('.board .nav-tabs li.active');
-    $active.next().removeClass('disabled')
-    nextTab($active);
+        $(".form-group").removeClass("has-error");
+        for(var i=0; i<curInputs.length; i++){
+            if (!curInputs[i].validity.valid){
+                isValid = false;
+                $(curInputs[i]).closest(".form-group").addClass("has-error");
+            }
+        }
 
-    var isValid = 1;
- $('.phone-input').each(function(){
-     if($(this).val() == ''){
-         $(this).css('border','1px solid red');
-         isValid = 0;
-         }
-     else{
-         $(this).css('border','1px solid green');
-         $('#company-email').show();
-         }
-     });
+        if (isValid)
+            nextStepWizard.removeAttr('disabled').trigger('click');
+    });
 
- if(isValid == 0){
-    //  alert('Please enter content to all text fields');
-      var $active = $(".board .nav-tabs li.active");
-      prevTab($active);
-      $('#company-email').hide();
-     return false;
-     }
-  });
-
-  $(".next-step3").on("click", function(e){
-    var $active = $('.board .nav-tabs li.active');
-    $active.next().removeClass('disabled')
-    nextTab($active);
-
-    var isValid = 1;
- $('.email-input').each(function(){
-     if($(this).val() == ''){
-         $(this).css('border','1px solid red');
-         isValid = 0;
-         }
-     else{
-         $(this).css('border','1px solid green');
-         }
-     });
-
- if(isValid == 0){
-      var $active = $(".board .nav-tabs li.active");
-      prevTab($active);
-     return false;
-     }
-  });
-
-
-  $(".prev-step").on("click", function(e){
-    var $active = $(".board .nav-tabs li.active");
-    prevTab($active);
-  });
+    $('div.setup-panel div a.btn-primary').trigger('click');
 
 });
-function nextTab(elem) {
-    $(elem).next().find('a[data-toggle="tab"]').click();
-}
-function prevTab(elem) {
-    $(elem).prev().find('a[data-toggle="tab"]').click();
-}
