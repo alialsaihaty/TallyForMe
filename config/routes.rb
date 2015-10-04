@@ -1,24 +1,20 @@
 Rails.application.routes.draw do
 
-  get 'emails/new'
 
-  get 'emails/edit'
 
-  get 'emails/index'
+  get 'dashboards/index'
 
-  get 'emails/show'
-
-  resources :services
-
+  resources :clients
   resources :addresses
-
   resources :phones
+  resources :emails
 
   resources :companies
 
   resources :invoices
 
   resources :items
+  resources :services
 
   resources :users, only: [:new, :create] do
     collection do

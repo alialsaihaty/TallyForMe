@@ -8,6 +8,8 @@ class EmailsController < ApplicationController
 
   def create
     @company = @emailable = Company.find params[:company_id]
+    # @email.user   = current_user
+    # @user         = @email.user
     @email = Email.new email_params
     @email.emailable = @emailable
     @email.save

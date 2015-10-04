@@ -1,15 +1,19 @@
 class CompaniesController < ApplicationController
   def new
     @company = Company.new
-    #@address = @company.addresses.new
-    1.times{ @company.addresses.build }
-    @phone = @company.phones.new
-    @email = @company.emails.new
+    # @address = Address.new
+    # @phone   = Phone.new
+    # @email   = Email.new
+    # 2.times{ @company.addresses.build }
+    @address = @company.addresses.new
+    @phone   = @company.phones.new
+    @email   = @company.emails.new
   end
 
   def create
-    # render text: params
-    @company = Company.new  company_params
+    @company      = Company.new  company_params
+    @company.user = current_user
+    @user         = @company.user
     if @company.save
        redirect_to root_path, notice: "Compnay Created!"
     else
@@ -19,12 +23,13 @@ class CompaniesController < ApplicationController
   end
 
   def edit
+    @company = Company.find params[:id]
     @user = current_user
   end
 
   def update
     @company = Company.find params[:id]
-    if @company.update
+    if @company.update company_params
       redirect_to company_path, notice: "Compnay updated!"
     else
       flash[:alert] = "See errors below!"
@@ -32,6 +37,7 @@ class CompaniesController < ApplicationController
     end
   end
   def show
+    @company = Company.find params[:id]
   end
 
   def index
@@ -41,6 +47,9 @@ class CompaniesController < ApplicationController
   private
 
   def company_params
-    params.require(:company).permit(:name, :email, :user_id, phones_attributes: [:phone_number, :ext, :is_default, :phone_kind, :mobile, :id, :_destroy], addresses_attributes: [:address1, :city, :country, :zip, :id, :_destroy], emails_attributes: [:email, :is_default, :email_kind, :id, :_destroy] )
+    params.require(:company).permit(:name, :email, :user_id,
+                                    addresses_attributes: [:address1, :city, :state, :country, :zip],
+                                    phones_attributes: [:phone_number, :ext],
+                                    emails_attributes: [:email])
   end
 end

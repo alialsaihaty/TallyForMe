@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150930232805) do
+ActiveRecord::Schema.define(version: 20151004004005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,16 +29,31 @@ ActiveRecord::Schema.define(version: 20150930232805) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.string   "address_kind"
+    t.integer  "company_id"
   end
 
   add_index "addresses", ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id", using: :btree
+  add_index "addresses", ["company_id"], name: "index_addresses_on_company_id", using: :btree
+
+  create_table "clients", force: :cascade do |t|
+    t.integer  "company_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "clients", ["company_id"], name: "index_clients_on_company_id", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
+
+  add_index "companies", ["user_id"], name: "index_companies_on_user_id", using: :btree
 
   create_table "emails", force: :cascade do |t|
     t.string   "email"
@@ -51,12 +66,6 @@ ActiveRecord::Schema.define(version: 20150930232805) do
   end
 
   add_index "emails", ["emailable_type", "emailable_id"], name: "index_emails_on_emailable_type_and_emailable_id", using: :btree
-
-  create_table "homes", force: :cascade do |t|
-    t.string   "index"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "invoiced_items", force: :cascade do |t|
     t.integer  "invoice_id"
@@ -146,12 +155,13 @@ ActiveRecord::Schema.define(version: 20150930232805) do
     t.datetime "updated_at",                     null: false
     t.boolean  "admin",           default: true
     t.string   "user_kind"
-    t.integer  "company_id"
   end
 
-  add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  add_foreign_key "addresses", "companies"
+  add_foreign_key "clients", "companies"
+  add_foreign_key "companies", "users"
   add_foreign_key "invoiced_items", "invoices"
   add_foreign_key "invoiced_items", "items"
   add_foreign_key "invoiced_services", "invoices"
@@ -159,5 +169,4 @@ ActiveRecord::Schema.define(version: 20150930232805) do
   add_foreign_key "invoices", "companies"
   add_foreign_key "items", "companies"
   add_foreign_key "services", "companies"
-  add_foreign_key "users", "companies"
 end

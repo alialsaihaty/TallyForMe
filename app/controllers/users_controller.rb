@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
     if @user.save
-      CommentsMailer.notify_account_owner(@user).deliver_now
+      # CommentsMailer.notify_account_owner(@user).deliver_now
       redirect_to root_path, notice: "Logged In!"
     else
       flash[:alert] = "See errors below"

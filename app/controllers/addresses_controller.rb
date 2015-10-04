@@ -9,8 +9,9 @@ class AddressesController < ApplicationController
 
   def create
     @company = @addresable = Company.find params[:company_id]
-    @address            = Address.new address_params
-    @address.addresable = @addresable
+    @address               = Address.new address_params
+    @address.addresable    = @addresable
+    @address.company       = @company
     @address.save
   end
   def index
