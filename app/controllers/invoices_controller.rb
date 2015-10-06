@@ -4,15 +4,17 @@ class InvoicesController < ApplicationController
 
 
   def new
-    # @user = current_user
     @invoice = Invoice.new
+    @clients = Client.all
+    @items   = Item.all
   end
 
   def create
-    @invoice = Invoice.new invoice_params
-    @invoice.user = current_user
+    @invoice         = Invoice.new invoice_params
+    @invoice.company = current_company
+    @company         = @invoice.company
     if @invoice.save
-      redirect_to invoices_path, notice: "Invoice Created!"
+      redirect_to @invoice, notice: "Invoice Created!"
     else
       flash[:alert] = "Invoice failed to create!"
       render :new
@@ -25,20 +27,21 @@ class InvoicesController < ApplicationController
 
   def edit
     @invoice = Invoice.find params[:id]
-    @invoice = @user.invoice
-
-    if @invoice.user_id != current_user_id
-      redirect_to 
-    end
   end
 
   def update
-
+    @invoice = Invoice.find params[:id]
+    if @invoice.update invoice_params
+      redirect_to @invoice, notice: "Invoice was successfully updated!"
+    else
+      flash[:alert] = "See errors below!"
+      render :edit
+    end
   end
 
   def show
+    @invoice = Invoice.find params[:id]
   end
-
 
 
   private

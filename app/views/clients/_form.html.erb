@@ -1,0 +1,41 @@
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="col-lg-6">
+        <%= simple_form_for @client do |c| %>
+          <%= c.input :business_name %>
+          <%= c.input :client_name %>
+      </div>
+      <div class="col-lg-6">
+        <%= c.error :emails %>
+        <%= c.simple_fields_for :emails do |e| %>
+          <%= e.input :email, label: "Business Email" %>
+        <% end %>
+      </div>
+      <div class="head">
+        <h3>Contact details</h3>
+      </div>
+      <div class="col-lg-4">
+        <%= c.error :addresses %>
+        <%= c.simple_fields_for :addresses do |a| %>
+          <%= a.input :address1, label: "Business Address"%>
+          <%= a.input :city %>
+          <%= a.input :zip, label: "Postal/Zip Code" %>
+      </div>
+      <div class="col-lg-4">
+          <%= a.input :state, label: "State/Province" %>
+          <%= a.input :country %>
+        <% end %>
+      </div>
+      <div class="col-lg-4">
+        <%= c.error :phones %>
+        <%= c.simple_fields_for :phones do |p| %>
+          <%= p.input :phone_number %>
+          <%= p.input :ext %>
+        <% end %>
+         <%= c.button :submit %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,18 +4,19 @@
     <div class="col-lg-12">
       <div class="col-lg-4">
         <%= simple_form_for @invoice do |f| %>
-          <%= f.input :company_id, label: "Client", collection: 0..1 %>
+          <%#= f.collection_select :id, @clients, :id, :client_name %>
+          <%= f.input :id, collection: @clients, label_method: :client_name, value_method: :id, label: "Clients"%>
           <%= f.input :company_id, label: "Client Address" %>
-        <% end %>
+        <%# end %>
       </div>
       <div class="col-lg-4">
-        <%= simple_form_for @invoice do |f| %>
+        <%#= simple_form_for @invoice do |f| %>
           <%= f.input :invoice_number, label: "Invoice No." %>
           <%= f.input :invoice_date, label: "Invoice Date" %>
-        <% end %>
+        <%# end %>
       </div>
       <div class="col-lg-4">
-        <%= simple_form_for @invoice do |f| %>
+        <%#= simple_form_for @invoice do |f| %>
           <%= f.input :payment_kind, label: "Payment Type" %>
         <% end %>
       </div>
@@ -25,6 +26,7 @@
                     <tr>
                         <th>Product</th>
                         <th>Quantity</th>
+                        <th>Unit Cost</th>
                         <th class="text-center">Tax 1</th>
                         <th class="text-center">Tax 2</th>
                         <th class="text-center">Price</th>
@@ -35,18 +37,21 @@
                         <td class="col-sm-8 col-md-6">
                         <div class="media">
                             <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
+                            <%= simple_form_for @invoice do |f| %>
                             <div class="media-body">
-                                <h4 class="media-heading"><a href="#">Product name</a></h4>
-                                <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
-                                <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+                                <h4 class="media-heading"><a href="#"><%= f.input :id, collection: @items, label_method: :item_name, value_method: :id, :include_blank => false, label: false%></a></h4>
+                                <!-- <h5 class="media-heading"> by <a href="#">Brand name</a></h5> -->
+                                <!-- <span>Status: </span><span class="text-success"><strong>In Stock</strong></span> -->
                             </div>
                         </div></td>
                         <td class="col-sm-1 col-md-1" style="text-align: center">
                         <input type="email" class="form-control" id="exampleInputEmail1" value="3">
                         </td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$4.87</strong></td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
-                        <td class="col-sm-1 col-md-1"><strong>$14.61</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong></strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong><%= f.input :id, collection: @items, label_method: :tax1, value_method: :id, :include_blank => false, label: false%></strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong><%= f.input :id, collection: @items, label_method: :tax2, value_method: :id, :include_blank => false, label: false%></strong></td>
+                        <td class="col-sm-1 col-md-1"><span id="price">$14.61</span></td>
+                        <% end %>
                     </tr>
                     <tr>
                         <td class="col-md-6">

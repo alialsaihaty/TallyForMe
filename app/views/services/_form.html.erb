@@ -1,0 +1,26 @@
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="col-lg-4">
+        <%= simple_form_for @service do |s| %>
+          <%= s.input :name, label: "Service Name" %>
+          <%= s.input :unit, label: "Service Unit" %>
+      </div>
+      <div class="col-lg-4">
+        <%= s.input :tax1, label: "Tax1" %>
+        <%= s.input :tax2, label: "Tax1" %>
+      </div>
+      <div class="col-lg-4">
+        <%= s.input :cost, label: "Service Cost" %>
+        <%= s.input :description, label: "Service Description" %>
+      </div>
+      <div class="head">
+
+      </div>
+      <div class="col-lg-12">
+        <%= s.button :submit %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151004004005) do
+ActiveRecord::Schema.define(version: 20151005192519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(version: 20151004004005) do
 
   create_table "clients", force: :cascade do |t|
     t.integer  "company_id"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "business_name"
+    t.string   "client_name"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "clients", ["company_id"], name: "index_clients_on_company_id", using: :btree
@@ -50,10 +50,7 @@ ActiveRecord::Schema.define(version: 20151004004005) do
     t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
   end
-
-  add_index "companies", ["user_id"], name: "index_companies_on_user_id", using: :btree
 
   create_table "emails", force: :cascade do |t|
     t.string   "email"
@@ -112,6 +109,9 @@ ActiveRecord::Schema.define(version: 20151004004005) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "company_id"
+    t.string   "item_name"
+    t.integer  "tax1"
+    t.integer  "tax2"
   end
 
   add_index "items", ["company_id"], name: "index_items_on_company_id", using: :btree
@@ -155,13 +155,14 @@ ActiveRecord::Schema.define(version: 20151004004005) do
     t.datetime "updated_at",                     null: false
     t.boolean  "admin",           default: true
     t.string   "user_kind"
+    t.integer  "company_id"
   end
 
+  add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   add_foreign_key "addresses", "companies"
   add_foreign_key "clients", "companies"
-  add_foreign_key "companies", "users"
   add_foreign_key "invoiced_items", "invoices"
   add_foreign_key "invoiced_items", "items"
   add_foreign_key "invoiced_services", "invoices"
@@ -169,4 +170,5 @@ ActiveRecord::Schema.define(version: 20151004004005) do
   add_foreign_key "invoices", "companies"
   add_foreign_key "items", "companies"
   add_foreign_key "services", "companies"
+  add_foreign_key "users", "companies"
 end

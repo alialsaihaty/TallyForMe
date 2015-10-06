@@ -1,0 +1,8 @@
+# Use the README file as a reference to customize settings.
+
+Item:
+  fields:
+    default: description, sku, qty, price, discount, company_id
+    form: description, sku, qty, price, discount, company_id
+  relationships: invoiced_items, invoices
+  application: Application

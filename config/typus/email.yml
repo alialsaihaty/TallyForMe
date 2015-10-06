@@ -1,0 +1,8 @@
+# Use the README file as a reference to customize settings.
+
+Email:
+  fields:
+    default: email, is_default, email_kind, emailable_id
+    form: email, is_default, email_kind, emailable_id
+  relationships: 
+  application: Application

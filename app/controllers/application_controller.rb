@@ -10,6 +10,15 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def current_company
+    # c = Company.where(user_id: :user_id)
+    #  User.find_by_id(1).company_id
+    # User.find_by_id(current_user).company_id
+    @current_company ||= Company.find_by_id session[:company_id]
+    # @current_company = @current_company || Company.find_by_id params[:id]
+  end
+  helper_method :current_company
+
   def user_signed_in?
     current_user.present?
   end

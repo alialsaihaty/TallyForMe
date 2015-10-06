@@ -8,9 +8,16 @@
 </head>
 <body>
   <%= render '/layouts/nav' %>
-<div class="container">
+  <header id="top" class="header">
+        <div class="text-vertical-center">
+          <div class="container">
+            <%= yield %>
+          </div>
+        </div>
+    </header>
+<!-- <div class="container">
 
-  <%= yield %>
-</div>
+  <%#= yield %>
+</div> -->
 </body>
 </html>

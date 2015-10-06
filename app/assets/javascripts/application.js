@@ -15,6 +15,7 @@
 //= require jquery.validate.additional-methods
 //= require jquery-ui
 //= require jquery_ujs
+//= require selectize
 //= require bootstrap-sprockets
 //= require_tree .
 
@@ -61,5 +62,32 @@ $(document).ready(function() {
     });
 
     $('div.setup-panel div a.btn-primary').trigger('click');
+
+
+
+    // $('#invoice_id').on("click", function(){
+    //   $.ajax({
+    //
+    //   });
+    // });
+  // 
+  //   update_amounts();
+  //   $('.qty').change(function() {
+  //      update_amounts();
+  //   });
+  // });
+  //
+  //
+  // function update_amounts()
+  // {
+  //    var sum = 0.0;
+  //    $('#myTable > tbody  > tr').each(function() {
+  //        var qty = $(this).find('option:selected').val();
+  //        var price = $(this).find('.price').val();
+  //        var amount = (qty*price)
+  //        sum+=amount;
+  //        $(this).find('.amount').text(''+amount);
+  //    });
+
 
 });

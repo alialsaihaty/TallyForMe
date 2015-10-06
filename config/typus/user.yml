@@ -1,0 +1,8 @@
+# Use the README file as a reference to customize settings.
+
+User:
+  fields:
+    default: first_name, last_name, email, password_digest, is_active, admin, user_kind
+    form: first_name, last_name, email, password_digest, is_active, admin, user_kind
+  relationships: company
+  application: Application

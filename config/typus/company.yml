@@ -1,0 +1,8 @@
+# Use the README file as a reference to customize settings.
+
+Company:
+  fields:
+    default: name, email, user_id
+    form: name, email, user_id
+  relationships: items, services, clients, addresses, phones, emails
+  application: Application

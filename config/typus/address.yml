@@ -1,0 +1,8 @@
+# Use the README file as a reference to customize settings.
+
+Address:
+  fields:
+    default: address1, address2, address3, city, state, zip, country, addressable_id, address_kind, company_id
+    form: address1, address2, address3, city, state, zip, country, addressable_id, address_kind, company_id
+  relationships: 
+  application: Application

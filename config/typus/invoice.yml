@@ -1,0 +1,8 @@
+# Use the README file as a reference to customize settings.
+
+Invoice:
+  fields:
+    default: invoice_number, invoice_date, subtotal, tax1, tax2, is_paid, payment_kind, payment_date, company_id
+    form: invoice_number, invoice_date, subtotal, tax1, tax2, is_paid, payment_kind, payment_date, company_id
+  relationships: invoiced_items, items, invoiced_services, services
+  application: Application

@@ -1,8 +1,9 @@
 class Company < ActiveRecord::Base
 
 
-  belongs_to :user
-
+  # belongs_to :user
+  has_one :user
+  
   has_many :items, dependent: :destroy
   has_many :services, dependent: :destroy
   has_many :clients, dependent: :nullify

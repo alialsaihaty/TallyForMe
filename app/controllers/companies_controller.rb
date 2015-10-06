@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
   def new
+    @user = current_user
     @company = Company.new
     # @address = Address.new
     # @phone   = Phone.new
@@ -24,7 +25,12 @@ class CompaniesController < ApplicationController
 
   def edit
     @company = Company.find params[:id]
-    @user = current_user
+    # @user = current_user
+    @compnay = @user.compnay
+
+    if @compnay.user_id != current_user.id
+      redirect_to compnay_path(@compnay)
+    end
   end
 
   def update
@@ -47,7 +53,7 @@ class CompaniesController < ApplicationController
   private
 
   def company_params
-    params.require(:company).permit(:name, :email, :user_id,
+    params.require(:company).permit(:name, :email,
                                     addresses_attributes: [:address1, :city, :state, :country, :zip],
                                     phones_attributes: [:phone_number, :ext],
                                     emails_attributes: [:email])

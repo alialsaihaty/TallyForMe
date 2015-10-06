@@ -1,0 +1,27 @@
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="col-lg-4">
+        <%= simple_form_for @item do |i| %>
+          <%= i.input :item_name, label: "Product Name" %>
+          <%= i.input :sku, label: "SKU(Stock keeping unit)" %>
+          <%= i.input :qty, label: "Quantity" %>
+      </div>
+      <div class="col-lg-4">
+        <%= i.input :price, label: "Price" %>
+        <%= i.input :tax1, label: "Tax1" %>
+        <%= i.input :tax2, label: "Tax1" %>
+      </div>
+      <div class="col-lg-4">
+        <%= i.input :description, label: "Product Description" %>
+      </div>
+      <div class="head">
+
+      </div>
+      <div class="col-lg-12">
+        <%= i.button :submit %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

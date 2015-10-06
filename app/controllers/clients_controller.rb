@@ -2,33 +2,59 @@ class ClientsController < ApplicationController
 
   def new
     @client = Client.new
+    # @address = @company.addresses.new
+    # @phone   = @company.phones.new
+    # @email   = @company.emails.new
   end
 
   def create
-    @client = Client.new client_params
+    @client         = Client.new client_params
+    @client.company = current_company
+    @company         = @client.company
     if @client.save
-      redirect_to 
+      redirect_to root_path, notice: "Client Added!"
     else
       flash[:alert] = "See errors below!"
       render :new
     end
   end
 
-  def edit
+  def show
+    @clien = Client.find params[:id]
+  end
 
+  def index
+    @clients = Client.all
+  end
+
+  def edit
+    @clien = Client.find params[:id]
   end
 
   def update
-
+    @clien = Client.find params[:id]
+    if @client.update client_params
+      redirect_to @client, notice: "Client Updated"
+    else
+      flash[:alert] = "See errors below!"
+      render :edit
+    end
   end
 
   def destroy
-
+    @clien = Client.find params[:id]
+    @client.destroy
+    redirect_to clients_path, notice: "Client was successfully destroyed"
   end
 
   private
 
   def client_params
-    params.require(:client).permit(:first_name, :last_name)
+    params.require(:client).permit(:business_name, :client_name, :company_id,
+                                   addresses_attributes: [:address1, :city, :state, :country, :zip],
+                                   emails_attributes: [:email],
+                                   phones_attributes: [:phone_number, :ext])
   end
+
+
 end

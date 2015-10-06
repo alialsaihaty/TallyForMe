@@ -1,0 +1,8 @@
+# Use the README file as a reference to customize settings.
+
+Phone:
+  fields:
+    default: phone_number, country_code, ext, is_default, mobile, phonable_id, phone_kind
+    form: phone_number, country_code, ext, is_default, mobile, phonable_id, phone_kind
+  relationships: 
+  application: Application

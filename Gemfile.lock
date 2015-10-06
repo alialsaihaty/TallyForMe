@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/typus/typus.git
+  revision: bfaa243d816516f509852b54d8f4b926a800f515
+  specs:
+    typus (4.0.0.beta1)
+      bcrypt (~> 3.1.10)
+      rails (~> 4.2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -61,6 +69,13 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
+    countries (1.1.0)
+      currencies (~> 0.4.2)
+      i18n_data (~> 0.7.0)
+    country_select (2.4.0)
+      countries (~> 1.1.0)
+      sort_alphabetical (~> 1.0)
+    currencies (0.4.2)
     debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.6.0)
@@ -71,6 +86,7 @@ GEM
       activesupport (>= 4.1.0)
     hirb (0.7.3)
     i18n (0.7.0)
+    i18n_data (0.7.0)
     interactive_editor (0.0.10)
       spoon (>= 0.0.1)
     jbuilder (2.3.1)
@@ -149,10 +165,13 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    selectize-rails (0.12.1)
     simple_form (3.1.1)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
     slop (3.6.0)
+    sort_alphabetical (1.0.2)
+      unicode_utils (>= 1.2.2)
     spoon (0.0.4)
       ffi
     spring (1.4.0)
@@ -172,6 +191,7 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unicode_utils (1.4.0)
     web-console (2.2.1)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
@@ -189,6 +209,7 @@ DEPENDENCIES
   byebug
   cancancan
   coffee-rails (~> 4.1.0)
+  country_select
   font-awesome-rails
   hirb
   interactive_editor
@@ -203,9 +224,11 @@ DEPENDENCIES
   rails-erd
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  selectize-rails
   simple_form
   spring
   turbolinks
+  typus!
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
 
