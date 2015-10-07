@@ -85,8 +85,13 @@ $(document).ready(function() {
           id = id-1
           price = server_response[id].price
           $('#unit_price').html(price)
+          var qty = $('#qty').val()
+          var p = price * qty
+          $('p.total').html(p)
+          // $('p.subtotal').html(p)
         }
       });
+      console.log($('#unit_price').html());
     });
 
 
@@ -111,7 +116,8 @@ $(document).ready(function() {
           success: function(server_response){
             id = id-1
             tax1 = server_response[id].tax1
-            $('#tax1').html(0.00)
+            $('#tax1').val(0)//parseInt(variablehere)
+
           }
         });
       }
@@ -138,31 +144,94 @@ $(document).ready(function() {
           success: function(server_response){
             id = id-1
             tax2 = server_response[id].tax2
-            $('#tax2').html(0.00)
+            $('#tax2').val(0)
           }
         });
       }
     });
 
 
-  //
-  //   update_amounts();
-  //   $('.qty').change(function() {
-  //      update_amounts();
-  //   });
-  // });
-  //
-  //
-  // function update_amounts()
-  // {
-  //    var sum = 0.0;
-  //    $('#myTable > tbody  > tr').each(function() {
-  //        var qty = $(this).find('option:selected').val();
-  //        var price = $(this).find('.price').val();
-  //        var amount = (qty*price)
-  //        sum+=amount;
-  //        $(this).find('.amount').text(''+amount);
-  //    });
+    update_prices();
+    $('#qty').change(function() {
+       update_prices();
+    });
 
+
+
+    var recalculateTaxesAndTotal = function(){
+      // Go over price and taxes and calculcate total
+
+      var price = parseInt($("#unit_price").html());
+      var tax1  = parseInt($("#tax1").html());
+      var tax2  = parseInt($("#tax2").html());
+      var qty   = parseInt($("#qty").val());
+
+      var t1 = (tax1 / 100);
+      var t2 = (tax2 / 100);
+      var total = price * qty * t1 * t2;
+
+      $("#ftotal").html(total);
+      // debugger;
+    };
+
+    $("#item_id").on("change", recalculateTaxesAndTotal);
+    $("#qty").on("change", recalculateTaxesAndTotal);
+    $("#unit_price").on("change", recalculateTaxesAndTotal);
+    $("#tax1_li").on("change", recalculateTaxesAndTotal);
+    $("#tax2_li").on("change", recalculateTaxesAndTotal);
+
+
+    // $('#click').on("click", function(){
+    //   // console.log(#tax2);
+    //   var sub = $('p.total').html()
+    //   var t1 = $("#tax1").html();
+    //   console.log(t1);
+    //   var t2 = $("#tax2").html();
+    //   var t1t = t1 / 100
+    //   var t2t = t2 / 100
+    //   var gst = sub * t1t
+    //   var pst = sub * t2t
+    //   var total_w_t = gst + pst
+    //   // debugger;
+    //   $('#ftotal').html(total_w_t);
+    // })
+
+    // var $overall = 0;
+
+    // $("tr.sum").each(function(){
+    //     var $sub = $(this).find('p.total').html()
+    //     console.log($sub);
+    //     var $t1 = $(this).find("#tax1").html();
+    //     var $t2 = $(this).find("#tax2").html();
+    //     var t1t = $t1 / 100
+    //     var t2t = $t2 / 100
+    //     var $gst = $sub * t1t
+    //     var $pst = $sub * t2t
+    //     var total_w_t = $gst + $pst
+    //     $(this).find("#f_total").html(total_w_t);
+    //
+    //      $overall+= total_w_t;
+    //      console.log($overall);
+    // });
+    //
+    // $("#f_total").html($overall);
+
+    //
+    // $('p.total').html().change(function() {
+    //   var select1_value = $(this).html();
+    //   $('p.subtotal').html(select1_value);
+    // });
+
+    // $("p.total").val("p.subtotal").change();
 
 });
+  function update_prices() {
+     var sum = 0.0;
+     $('#myTable > tbody').each(function() {
+         var qty = $(this).find('#qty').val();
+         var price = $(this).find('#unit_price').html();
+         var amount = (qty*price)
+         sum+=amount;
+         $(this).find('p.total').html(amount);
+     });
+  }

@@ -21,7 +21,7 @@
         <% end %>
       </div>
       <div class="col-lg-12">
-            <table class="table table-hover">
+            <table class="table table-hover" id="myTable">
                 <thead>
                     <tr>
                         <th>Product</th>
@@ -44,7 +44,8 @@
                           </div>
                         </td>
                         <td class="col-sm-1 col-md-1" style="text-align: center">
-                          <input type="number" class="form-control" name="quantity" min="1" required="required" value="1">
+                          <input type="number" class="form-control" id="qty" name="quantity" min="1" required="required" value="1">
+                          <%#= f.number_field :quantity, value: 1, class: "form-control", min: 1 %>
                         </td>
                         <td class="col-sm-1 col-md-1 text-center">
                           <strong><div class="boxed" id="unit_price"></div></strong>
@@ -68,10 +69,11 @@
                           </strong>
                         </td>
                         <td class="col-sm-1 col-md-1">
-                          <span id="price">0.00</span>
+                          <p class="total">$<strong>0.00</strong></p>
                         </td>
                         <% end %>
                     </tr>
+
                     <!-- <tr>
                         <td class="col-md-6">
                         <div class="media">
@@ -89,42 +91,42 @@
                         <td class="col-md-1 text-center"><strong>$9.98</strong></td>
                         <td class="col-md-1"><strong>$14.61</strong></td>
                     </tr> -->
-                    <tr>
+                    <tr class="sum">
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
                         <td><h5>Subtotal</h5></td>
-                        <td class="text-right"><h5>$<strong>0.00</strong></h5></td>
+                        <td class="text-right">
+                          <p class="total">$<strong>0.00</strong></p>
+                        </td>
                     </tr>
-                    <tr>
+                    <tr class="sum">
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
                         <td><h5>Tax1:</h5></td>
-                        <td class="text-right" id="tax1"><h5>$<strong>0.00</strong></h5></td>
+                        <td class="text-right" id="tax1">0.00</td>
                     </tr>
-                    <tr>
+                    <tr class="sum">
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
                         <td><h5>Tax2:</h5></td>
-                        <td class="text-right" id="tax2"><h5>$<strong>0.00</strong></h5></td>
+                        <td class="text-right" id="tax2">0.00</td>
                     </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
                         <td><h3>Total:</h3></td>
-                        <td class="text-right"><h3>$<strong>0.00</strong></h3></td>
+                        <td class="text-right" id="ftotal">0.00</td>
                     </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
                         <td>
-                        <!-- <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                        </button> -->
+                          <!-- <button type="button" id="click">click</button> -->
                         </td>
                         <td>
                         <button type="button" class="btn btn-success">

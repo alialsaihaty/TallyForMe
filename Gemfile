@@ -14,6 +14,7 @@ gem 'jquery-ui-rails'
 gem "typus", github: "typus/typus"
 gem 'country_select'
 gem "selectize-rails"
+gem 'prawn-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
