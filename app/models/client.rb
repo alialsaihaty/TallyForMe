@@ -5,4 +5,5 @@ class Client < ActiveRecord::Base
   has_many :phones,    as: :phonable, dependent: :destroy
   has_many :emails,    as: :emailable, dependent: :destroy
 
+  accepts_nested_attributes_for :addresses
 end

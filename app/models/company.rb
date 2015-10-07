@@ -3,10 +3,11 @@ class Company < ActiveRecord::Base
 
   # belongs_to :user
   has_one :user
-  
+
   has_many :items, dependent: :destroy
   has_many :services, dependent: :destroy
   has_many :clients, dependent: :nullify
+  has_many :invoices, dependent: :destroy
 
   has_many :addresses, as: :addressable, dependent: :destroy
   has_many :phones,    as: :phonable, dependent: :destroy

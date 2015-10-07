@@ -1,13 +1,12 @@
 class EmailsController < ApplicationController
 
+  before_action :find_emailable
 
   def new
     @email = Email.new
-    @company = @emailable = Company.find params[:company_id]
   end
 
   def create
-    @company = @emailable = Company.find params[:company_id]
     # @email.user   = current_user
     # @user         = @email.user
     @email = Email.new email_params
@@ -25,6 +24,14 @@ class EmailsController < ApplicationController
   end
 
   private
+
+  def find_emailable
+    if params[:company_id]
+      @company = @emailable = Company.find params[:company_id]
+    elsif params[:client_id]
+      @client = @emailable = Client.find params[:client_id]
+    end
+  end
 
   def email_params
     params.require(:email).permit(:email, :is_default, :email_kind,)

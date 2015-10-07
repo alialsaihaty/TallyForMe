@@ -1,23 +1,23 @@
-
 <div class="jumbotron">
   <div class="row">
     <div class="col-lg-12">
-      <div class="col-lg-4">
+      <div class="col-lg-6">
         <%= simple_form_for @invoice do |f| %>
-          <%#= f.collection_select :id, @clients, :id, :client_name %>
-          <%= f.input :id, collection: @clients, label_method: :client_name, value_method: :id, label: "Clients"%>
-          <%= f.input :company_id, label: "Client Address" %>
-        <%# end %>
+          <%= f.input :id, collection: @clients, label_method: :client_name, value_method: :id, label: "Clients", input_html: { name: 'client[id]', id: 'client_id' } %>
+          <p class="formfield">
+              <label for="textarea">Client Business Address</label>
+              <textarea id="textarea" rows="4" cols="27"></textarea>
+          </p>
+          <p class="formfield">
+              <label for="textarea">Client Home Address</label>
+              <textarea id="textarea" rows="4" cols="27"></textarea>
+          </p>
       </div>
       <div class="col-lg-4">
-        <%#= simple_form_for @invoice do |f| %>
-          <%= f.input :invoice_number, label: "Invoice No." %>
           <%= f.input :invoice_date, label: "Invoice Date" %>
-        <%# end %>
-      </div>
-      <div class="col-lg-4">
-        <%#= simple_form_for @invoice do |f| %>
-          <%= f.input :payment_kind, label: "Payment Type" %>
+          <%= f.input :purchase_order_no, label: "Purchase Order No" %>
+          <%= f.input :invoice_number, label: "Invoice No." %>
+          <%= f.input :terms, label: "Terms" %>
         <% end %>
       </div>
       <div class="col-lg-12">
@@ -35,25 +35,44 @@
                 <tbody>
                     <tr>
                         <td class="col-sm-8 col-md-6">
-                        <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
-                            <%= simple_form_for @invoice do |f| %>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#"><%= f.input :id, collection: @items, label_method: :item_name, value_method: :id, :include_blank => false, label: false%></a></h4>
-                                <!-- <h5 class="media-heading"> by <a href="#">Brand name</a></h5> -->
-                                <!-- <span>Status: </span><span class="text-success"><strong>In Stock</strong></span> -->
-                            </div>
-                        </div></td>
-                        <td class="col-sm-1 col-md-1" style="text-align: center">
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="3">
+                          <div class="media">
+                              <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
+                              <%= simple_form_for @invoice do |f| %>
+                              <div class="media-body">
+                                  <%= f.input :id, collection: @items, label_method: :item_name, value_method: :id, label: false, input_html: { name: 'item[id]', id: 'item_id' }%>
+                              </div>
+                          </div>
                         </td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong></strong></td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong><%= f.input :id, collection: @items, label_method: :tax1, value_method: :id, :include_blank => false, label: false%></strong></td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong><%= f.input :id, collection: @items, label_method: :tax2, value_method: :id, :include_blank => false, label: false%></strong></td>
-                        <td class="col-sm-1 col-md-1"><span id="price">$14.61</span></td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                          <input type="number" class="form-control" name="quantity" min="1" required="required" value="1">
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center">
+                          <strong><div class="boxed" id="unit_price"></div></strong>
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center">
+                          <strong>
+                            <select class="form-control" id="tax1_li">
+                              <option disabled selected> -- select an option -- </option>
+                              <option value="yes">Yes</option>
+                              <option value="no">No</option>
+                            </select>
+                          </strong>
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center">
+                          <strong>
+                            <select class="form-control" id="tax2_li">
+                              <option disabled selected> -- select an option -- </option>
+                              <option value="yes">Yes</option>
+                              <option value="no">No</option>
+                            </select>
+                          </strong>
+                        </td>
+                        <td class="col-sm-1 col-md-1">
+                          <span id="price">0.00</span>
+                        </td>
                         <% end %>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td class="col-md-6">
                         <div class="media">
                             <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
@@ -69,46 +88,47 @@
                         <td class="col-md-1 text-center"><strong>$4.99</strong></td>
                         <td class="col-md-1 text-center"><strong>$9.98</strong></td>
                         <td class="col-md-1"><strong>$14.61</strong></td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
                         <td><h5>Subtotal</h5></td>
-                        <td class="text-right"><h5><strong>$24.59</strong></h5></td>
+                        <td class="text-right"><h5>$<strong>0.00</strong></h5></td>
                     </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
-                        <td><h5>Total</h5></td>
-                        <td class="text-right"><h5><strong>$6.94</strong></h5></td>
+                        <td><h5>Tax1:</h5></td>
+                        <td class="text-right" id="tax1"><h5>$<strong>0.00</strong></h5></td>
                     </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
-                        <td><h5>Net Balance:</h5></td>
-                        <td class="text-right"><h5><strong>$31.53</strong></h5></td>
+                        <td><h5>Tax2:</h5></td>
+                        <td class="text-right" id="tax2"><h5>$<strong>0.00</strong></h5></td>
                     </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
-                        <td><h3>Gross Total:</h3></td>
-                        <td class="text-right"><h3><strong>$31.53</strong></h3></td>
+                        <td><h3>Total:</h3></td>
+                        <td class="text-right"><h3>$<strong>0.00</strong></h3></td>
                     </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
                         <td>
-                        <button type="button" class="btn btn-default">
+                        <!-- <button type="button" class="btn btn-default">
                             <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                        </button></td>
+                        </button> -->
+                        </td>
                         <td>
                         <button type="button" class="btn btn-success">
-                            Checkout <span class="glyphicon glyphicon-play"></span>
+                            Send an Invoice <span class="glyphicon glyphicon-play"></span>
                         </button></td>
                     </tr>
                 </tbody>

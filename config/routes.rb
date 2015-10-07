@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
 
-  get 'dashboards/index'
+  get 'dashboard/index'
 
   resources :clients
   resources :addresses

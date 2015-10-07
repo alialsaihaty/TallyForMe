@@ -64,13 +64,88 @@ $(document).ready(function() {
     $('div.setup-panel div a.btn-primary').trigger('click');
 
 
+    $('#client_id').on("change", function(){
+      var id = $(this).val();
+      $.ajax({
+        type: "GET",
+        url: "/addresses/"+id,
+        success: function(server_response) {
+          console.log(server_response)
+          $('#textarea').val(server_response.address)
+        }
+      });
+    });
 
-    // $('#invoice_id').on("click", function(){
-    //   $.ajax({
-    //
-    //   });
-    // });
-  // 
+    $('#item_id').on("change", function(){
+      var id = $(this).val();
+      $.ajax({
+        type: "GET",
+        url: "/items/"+id,
+        success: function(server_response){
+          id = id-1
+          price = server_response[id].price
+          $('#unit_price').html(price)
+        }
+      });
+    });
+
+
+    $('#tax1_li').on("change", function(){
+      var id = $('#item_id').val();
+      var val = $(this).val();
+      if (val == "yes") {
+        $.ajax({
+          type: "GET",
+          url: "/items/"+id,
+          success: function(server_response){
+            id = id-1
+            tax1 = server_response[id].tax1
+            $('#tax1').html(tax1)
+          }
+        });
+      }
+      if (val == "no") {
+        $.ajax({
+          type: "GET",
+          url: "/items/"+id,
+          success: function(server_response){
+            id = id-1
+            tax1 = server_response[id].tax1
+            $('#tax1').html(0.00)
+          }
+        });
+      }
+    });
+
+    $('#tax2_li').on("change", function(){
+      var id = $('#item_id').val();
+      var val = $(this).val();
+      if (val == "yes") {
+        $.ajax({
+          type: "GET",
+          url: "/items/"+id,
+          success: function(server_response){
+            id = id-1
+            tax2 = server_response[id].tax2
+            $('#tax2').html(tax2)
+          }
+        });
+      }
+      if (val == "no") {
+        $.ajax({
+          type: "GET",
+          url: "/items/"+id,
+          success: function(server_response){
+            id = id-1
+            tax2 = server_response[id].tax2
+            $('#tax2').html(0.00)
+          }
+        });
+      }
+    });
+
+
+  //
   //   update_amounts();
   //   $('.qty').change(function() {
   //      update_amounts();

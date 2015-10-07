@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
     @item.company = current_company
     @company      = @item.company
     if @item.save
-      redirect_to @item, notice: "Item Created!"
+      redirect_to root_path, notice: "Item Created!"
     else
       flash[:alert] = "See errors below!"
       render :new
@@ -34,7 +34,14 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find params[:id]
+    # @item   = Item.find params[:id]
+    company = current_company
+    # @company      = @item.company
+    # @company = Compnay.find params[:id]
+    @item   = company.items
+
+    # render json:{item: @item.display_item}
+     render json: @item
   end
 
   def destroy

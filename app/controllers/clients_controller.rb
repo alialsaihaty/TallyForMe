@@ -2,9 +2,9 @@ class ClientsController < ApplicationController
 
   def new
     @client = Client.new
-    # @address = @company.addresses.new
-    # @phone   = @company.phones.new
-    # @email   = @company.emails.new
+    @address = @client.addresses.new
+    @phone   = @client.phones.new
+    @email   = @client.emails.new
   end
 
   def create
@@ -20,7 +20,7 @@ class ClientsController < ApplicationController
   end
 
   def show
-    @clien = Client.find params[:id]
+    @client = Client.find params[:id]
   end
 
   def index

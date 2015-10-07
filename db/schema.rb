@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151005192519) do
+ActiveRecord::Schema.define(version: 20151006233247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,9 +93,11 @@ ActiveRecord::Schema.define(version: 20151005192519) do
     t.boolean  "is_paid"
     t.string   "payment_kind"
     t.datetime "payment_date"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "company_id"
+    t.string   "purchase_order_no"
+    t.string   "terms"
   end
 
   add_index "invoices", ["company_id"], name: "index_invoices_on_company_id", using: :btree

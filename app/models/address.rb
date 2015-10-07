@@ -7,4 +7,8 @@ class Address < ActiveRecord::Base
   validates :state,    presence: true
   validates :zip,      presence: true
 
+  def display
+    "#{address1} #{city} #{state} #{country} #{zip}"
+  end
+
 end
