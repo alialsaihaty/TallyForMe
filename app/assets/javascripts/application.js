@@ -184,6 +184,21 @@ $(document).ready(function() {
     $("#tax2_li").on("change", recalculateTaxesAndTotal);
 
 
+
+    $('form').submit(function() {
+    var valuesToSubmit =
+    $.ajax({
+        type: "POST",
+        url: $(this).attr('action'),
+        data: valuesToSubmit,
+        dataType: "JSON"
+    }).success(function(json){
+        console.log("success", json);
+    });
+
+    
+});
+
     // $('#click').on("click", function(){
     //   // console.log(#tax2);
     //   var sub = $('p.total').html()

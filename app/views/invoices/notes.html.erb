@@ -1,0 +1,30 @@
+class InvoiceBuilder
+  attr_accessor :params, :invoice
+
+  def initialize(params)
+    @params = params
+    @invoice = Invoice.new
+  end
+
+  #should return a ready but unsaved invoice
+  def build_invoice
+    invoice.invoice_number = params[:invoice][:invoice_number]
+  end
+
+  def lookup_client
+
+  end
+
+  def lookup_item
+
+  end
+end
+
+
+######in controller
+
+# builder = InvoiceBuilder.new(params)
+# invoice = builder.build_invoice
+# invoice.client = builder.lookup_client
+# invoice.item = builder.lookup_item
+# if invoice.save ....

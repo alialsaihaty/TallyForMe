@@ -15,6 +15,10 @@ class InvoicesController < ApplicationController
   end
 
   def create
+    # client = Client.find_by(id: params[:client][:id])
+    # item = Item.find_by(id: params[:item][:id])
+    # quantity = params[:quantity]
+
     @invoice         = Invoice.new invoice_params
     @invoice.company = current_company
     @company         = @invoice.company
@@ -52,6 +56,7 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
+    puts params.inspect
     params.require(:invoice).permit(:invoice_number, :invoice_date, :subtotal,
                                     :tax1, :tax2, :is_paid, :payment_kind, :terms,
                                     :payment_date, :company_id, :purchase_order_no,
