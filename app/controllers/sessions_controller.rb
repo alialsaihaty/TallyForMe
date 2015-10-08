@@ -10,10 +10,11 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       session[:company_id] = @user.company_id
-      redirect_to root_path, notice: "Signed in successfully!"
+      # raise "user.company_id is #{@user.company_id}"
+      redirect_to new_company_path, notice: "Signed in successfully!"
     else
       flash[:alert] = "Wrong credentials"
-      redirect_to :new
+      redirect_to new_session_path
     end
   end
 

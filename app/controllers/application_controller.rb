@@ -14,7 +14,12 @@ class ApplicationController < ActionController::Base
     # c = Company.where(user_id: :user_id)
     #  User.find_by_id(1).company_id
     # User.find_by_id(current_user).company_id
-    @current_company ||= Company.find_by_id session[:company_id]
+    @current_company ||= Company.find_by(id: session[:company_id])
+     unless @current_company
+       Rails.logger.warn "No Company found"
+       raise "No Company found for id: #{session[:company_id] || "none"}"
+     end
+    @current_company
     # @current_company = @current_company || Company.find_by_id params[:id]
   end
   helper_method :current_company

@@ -166,12 +166,11 @@ $(document).ready(function() {
       var tax2  = parseInt($("#tax2").html());
       var qty   = parseInt($("#qty").val());
 
-      var t1 = (tax1 / 100);
-      var t2 = (tax2 / 100);
+      var t1 = 1 + (tax1 / 100);
+      var t2 = 1 + (tax2 / 100);
       var total = price * qty * t1 * t2;
 
       $("#ftotal").html(total);
-      // debugger;
     };
 
     $("#item_id").on("change", recalculateTaxesAndTotal);

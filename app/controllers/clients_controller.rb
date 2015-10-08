@@ -9,6 +9,14 @@ class ClientsController < ApplicationController
 
   def create
     @client         = Client.new client_params
+    puts 'current_company'
+    puts 'current_company'
+    puts 'current_company'
+    puts 'current_company'
+    puts 'current_company'
+    puts 'current_company'
+    puts 'current_company'
+    puts current_company
     @client.company = current_company
     @company         = @client.company
     if @client.save

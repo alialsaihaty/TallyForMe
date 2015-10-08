@@ -26,11 +26,10 @@ class CompaniesController < ApplicationController
   def edit
     @company = Company.find params[:id]
     # @user = current_user
-    @compnay = @user.compnay
-
-    if @compnay.user_id != current_user.id
-      redirect_to compnay_path(@compnay)
-    end
+    # @company = @user.compnay
+    # if @compnay.user_id != current_user.id
+    #   redirect_to compnay_path(@compnay)
+    # end
   end
 
   def update

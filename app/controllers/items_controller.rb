@@ -37,7 +37,7 @@ class ItemsController < ApplicationController
     # @item   = Item.find params[:id]
     company = current_company
     # @company      = @item.company
-    # @company = Compnay.find params[:id]
+    @company = Compnay.find params[:id]
     @item   = company.items
 
     # render json:{item: @item.display_item}
