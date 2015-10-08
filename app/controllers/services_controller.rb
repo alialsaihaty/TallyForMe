@@ -1,4 +1,5 @@
 class ServicesController < ApplicationController
+  before_action :check_for_current_company
   def new
     @service = Service.new
   end

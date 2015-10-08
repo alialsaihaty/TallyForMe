@@ -1,12 +1,17 @@
 class InvoicesController < ApplicationController
-
+  before_action :check_for_current_company
   before_action :authenticate_user!
 
 
   def new
     @invoice = Invoice.new
-    @clients = Client.all
-    @items   = Item.all
+    if current_company
+      @clients = current_company.clients
+      @items   = current_company.items
+    else
+      @clients = []
+      @items   = []
+    end
   end
 
   def create

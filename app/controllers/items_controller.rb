@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :check_for_current_company
   def new
     @item = Item.new
   end
@@ -37,7 +38,7 @@ class ItemsController < ApplicationController
     # @item   = Item.find params[:id]
     company = current_company
     # @company      = @item.company
-    @company = Compnay.find params[:id]
+    # @company = Company.find params[:id]
     @item   = company.items
 
     # render json:{item: @item.display_item}

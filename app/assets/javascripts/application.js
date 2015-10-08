@@ -89,6 +89,10 @@ $(document).ready(function() {
           var p = price * qty
           $('p.total').html(p)
           // $('p.subtotal').html(p)
+        },
+        error: function(err) {
+          console.log("Error calling /items " + id);
+          console.log(err);
         }
       });
       console.log($('#unit_price').html());

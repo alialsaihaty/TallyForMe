@@ -1,5 +1,6 @@
 class ClientsController < ApplicationController
-
+  before_action :check_for_current_company
+  
   def new
     @client = Client.new
     @address = @client.addresses.new

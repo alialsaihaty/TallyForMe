@@ -19,7 +19,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello <%= current_user.first_name %><span class="caret"></span></a>
           <ul class="dropdown-menu">
             <%if current_user.company %>
-              <li><%= link_to "Edit Your Company", edit_company_path(current_company.id) %></li>
+              <li><%= link_to "Edit Your Company", edit_company_path(current_user.company) %></li>
             <% else %>
               <li><%= link_to "Create Company", new_company_path %></li>
             <% end %>
