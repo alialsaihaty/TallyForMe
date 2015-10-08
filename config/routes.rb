@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
 
   get 'dashboard/index'
+  get 'home/signup'
 
   resources :clients
   resources :addresses

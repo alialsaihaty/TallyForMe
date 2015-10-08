@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  
+
   def new
     @user = current_user
     @company = Company.new
@@ -17,7 +17,7 @@ class CompaniesController < ApplicationController
     @company.user = current_user
     @user         = @company.user
     if @company.save
-       redirect_to root_path, notice: "Compnay Created!"
+       redirect_to dashboard_index_path, notice: "Compnay Created!"
     else
       flash[:alert] = "See errors below!"
       render :new
