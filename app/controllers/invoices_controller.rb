@@ -53,7 +53,8 @@ class InvoicesController < ApplicationController
 
   def invoice_params
     params.require(:invoice).permit(:invoice_number, :invoice_date, :subtotal,
-                                    :tax1, :tax2, :is_paid, :payment_kind,
-                                    :payment_date, :company_id)
+                                    :tax1, :tax2, :is_paid, :payment_kind, :terms,
+                                    :payment_date, :company_id, :purchase_order_no,
+                                    addresses_attributes: [:address1, :city, :state, :country, :zip])
   end
 end

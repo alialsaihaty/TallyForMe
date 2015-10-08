@@ -82,18 +82,18 @@ $(document).ready(function() {
         type: "GET",
         url: "/items/"+id,
         success: function(server_response){
-          id = id-1
-          price = server_response[id].price
+          console.log(server_response);
+          price = server_response[0].price
           $('#unit_price').html(price)
           var qty = $('#qty').val()
           var p = price * qty
           $('p.total').html(p)
           // $('p.subtotal').html(p)
         },
-        error: function(err) {
-          console.log("Error calling /items " + id);
-          console.log(err);
-        }
+        // error: function(err) {
+        //   console.log("Error calling /items " + id);
+        //   console.log(err);
+        // }
       });
       console.log($('#unit_price').html());
     });
@@ -107,8 +107,8 @@ $(document).ready(function() {
           type: "GET",
           url: "/items/"+id,
           success: function(server_response){
-            id = id-1
-            tax1 = server_response[id].tax1
+            // id = id-1
+            tax1 = server_response[0].tax1
             $('#tax1').html(tax1)
           }
         });
@@ -135,8 +135,8 @@ $(document).ready(function() {
           type: "GET",
           url: "/items/"+id,
           success: function(server_response){
-            id = id-1
-            tax2 = server_response[id].tax2
+            // id = id-1
+            tax2 = server_response[0].tax2
             $('#tax2').html(tax2)
           }
         });

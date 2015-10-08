@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
   before_action :check_for_current_company
-  
+
   def new
     @client = Client.new
     @address = @client.addresses.new
@@ -10,14 +10,6 @@ class ClientsController < ApplicationController
 
   def create
     @client         = Client.new client_params
-    puts 'current_company'
-    puts 'current_company'
-    puts 'current_company'
-    puts 'current_company'
-    puts 'current_company'
-    puts 'current_company'
-    puts 'current_company'
-    puts current_company
     @client.company = current_company
     @company         = @client.company
     if @client.save
