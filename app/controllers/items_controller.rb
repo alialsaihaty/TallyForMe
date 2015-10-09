@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
     @item.company = current_company
     @company      = @item.company
     if @item.save
-      redirect_to root_path, notice: "Item Created!"
+      redirect_to dashboard_index_path, notice: "Item Created!"
     else
       flash[:alert] = "See errors below!"
       render :new

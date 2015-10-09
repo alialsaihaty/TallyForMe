@@ -13,7 +13,7 @@ class ClientsController < ApplicationController
     @client.company = current_company
     @company         = @client.company
     if @client.save
-      redirect_to root_path, notice: "Client Added!"
+      redirect_to dashboard_index_path, notice: "Client Added!"
     else
       flash[:alert] = "See errors below!"
       render :new

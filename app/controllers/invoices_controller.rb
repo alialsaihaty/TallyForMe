@@ -23,7 +23,7 @@ class InvoicesController < ApplicationController
     @invoice.company = current_company
     @company         = @invoice.company
     if @invoice.save
-      redirect_to root_path, notice: "Invoice Created!"
+      redirect_to invoices_invo1_path, notice: "Invoice Created!"
     else
       flash[:alert] = "Invoice failed to create!"
       redirect_to root_path

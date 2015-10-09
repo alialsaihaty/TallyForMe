@@ -82,7 +82,7 @@
 
 aside {
     padding: 80px 0;
-    background-color: rgba(0,0,0,.9);
+    // background-color: rgba(0,0,0,.9);
 }
 
 .btn3d {
@@ -132,28 +132,14 @@ aside {
     box-shadow:0 0 0 1px #417fbd inset, 0 0 0 1px rgba(255,255,255,0.15) inset, 0 1px 3px 1px rgba(0,0,0,0.3);
     background-color:#4274D7;
 }
-.btn3d.btn-success {
-    box-shadow:0 0 0 1px #31c300 inset, 0 0 0 2px rgba(255,255,255,0.15) inset, 0 8px 0 0 #5eb924, 0 8px 8px 1px rgba(0,0,0,0.5);
-    background-color:#78d739;
-}
-.btn3d.btn-success:active, .btn3d.btn-success.active {
-    box-shadow:0 0 0 1px #30cd00 inset, 0 0 0 1px rgba(255,255,255,0.15) inset, 0 1px 3px 1px rgba(0,0,0,0.3);
-    background-color: #78d739;
-}
 
-.btn3d.btn-warning {
-    box-shadow:0 0 0 1px #d79a47 inset, 0 0 0 2px rgba(255,255,255,0.15) inset, 0 8px 0 0 #D79A34, 0 8px 8px 1px rgba(0,0,0,0.5);
-    background-color:#FEAF20;
+
+#subs1{
+  color:#fff;
 }
-.btn3d.btn-warning:active, .btn3d.btn-warning.active {
-    box-shadow:0 0 0 1px #d79a47 inset, 0 0 0 1px rgba(255,255,255,0.15) inset, 0 1px 3px 1px rgba(0,0,0,0.3);
-    background-color: #FEAF20;
+a:hover {
+  text-decoration:none; color:black;
 }
-.btn3d.btn-danger {
-    box-shadow:0 0 0 1px #b93802 inset, 0 0 0 2px rgba(255,255,255,0.15) inset, 0 8px 0 0 #AA0000, 0 8px 8px 1px rgba(0,0,0,0.5);
-    background-color:#D73814;
-}
-.btn3d.btn-danger:active, .btn3d.btn-danger.active {
-    box-shadow:0 0 0 1px #b93802 inset, 0 0 0 1px rgba(255,255,255,0.15) inset, 0 1px 3px 1px rgba(0,0,0,0.3);
-    background-color: #D73814;
+#subs{
+  color:black;
 }

@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
 
   get 'dashboard/index'
-  get 'home/signup'
+  get 'home/subscribe'
+  get 'invoices/invo1'
 
   resources :clients
   resources :addresses

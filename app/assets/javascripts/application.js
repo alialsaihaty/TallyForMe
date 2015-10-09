@@ -196,7 +196,7 @@ $(document).ready(function() {
         console.log("success", json);
     });
 
-    
+
 });
 
     // $('#click').on("click", function(){
@@ -214,33 +214,7 @@ $(document).ready(function() {
     //   $('#ftotal').html(total_w_t);
     // })
 
-    // var $overall = 0;
 
-    // $("tr.sum").each(function(){
-    //     var $sub = $(this).find('p.total').html()
-    //     console.log($sub);
-    //     var $t1 = $(this).find("#tax1").html();
-    //     var $t2 = $(this).find("#tax2").html();
-    //     var t1t = $t1 / 100
-    //     var t2t = $t2 / 100
-    //     var $gst = $sub * t1t
-    //     var $pst = $sub * t2t
-    //     var total_w_t = $gst + $pst
-    //     $(this).find("#f_total").html(total_w_t);
-    //
-    //      $overall+= total_w_t;
-    //      console.log($overall);
-    // });
-    //
-    // $("#f_total").html($overall);
-
-    //
-    // $('p.total').html().change(function() {
-    //   var select1_value = $(this).html();
-    //   $('p.subtotal').html(select1_value);
-    // });
-
-    // $("p.total").val("p.subtotal").change();
 
 });
   function update_prices() {

@@ -5,7 +5,7 @@
         <%= simple_form_for @item do |i| %>
           <%= i.input :item_name, label: "Product Name" %>
           <%= i.input :sku, label: "SKU(Stock keeping unit)" %>
-          <%= i.input :qty, label: "Quantity" %>
+          <%= i.input :qty, :collection => ['1 hour','2 hours','3 hours' ,'4 hours','5 hours','6 hours','7 hours'], label: "Quantity" %>
       </div>
       <div class="col-lg-4">
         <%= i.input :price, label: "Price" %>
